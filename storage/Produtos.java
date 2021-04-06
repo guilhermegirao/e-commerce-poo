@@ -15,7 +15,6 @@ public class Produtos {
 	public static int getId(String nome) {
 		int pos = -1;
 		int i = 0;
-		
 
 		for (Produto c : produtos) {
 			if (c != null) {
@@ -29,6 +28,20 @@ public class Produtos {
 		}
 		
 		return pos;
+	}
+	
+	public static ArrayList<Produto> search(String pattern) {
+		ArrayList<Produto> prod = new ArrayList<Produto>();
+		
+		for (Produto c : produtos) {
+			if (c != null) {
+				if (c.getNome().toLowerCase().contains(pattern.toLowerCase())) {
+					prod.add(c);
+				}
+			}
+		}
+		
+		return prod;
 	}
 
 	public static Produto getByNome(String nome) {

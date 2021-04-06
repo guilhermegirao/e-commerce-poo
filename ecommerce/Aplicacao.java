@@ -58,10 +58,30 @@ public class Aplicacao {
             		}
             		
             		break;
+
+            	case "buscarProduto":
+            		try {
+	            		System.out.println("Resultados de produtos para " + cmd[1] + ":");
+	            		System.out.println(visao.showProdutosSearch(cmd[1]));
+		            } catch (Exception ex) {
+		    			System.out.println("\nFAIL: Parâmetro inválido!");
+		    		}
+            		
+            		break;
             		
             	case "categorias":
             		System.out.println("Categorias:");
             		System.out.println(visao.showCategoriasAll());
+            		
+            		break;
+            		
+            	case "buscarCategoria":
+            		try {
+	            		System.out.println("Resultados de categorias para " + cmd[1] + ":");
+	            		System.out.println(visao.showCategoriasSearch(cmd[1]));
+		            } catch (Exception ex) {
+		    			System.out.println("\nFAIL: Parâmetro inválido!");
+		    		}
             		
             		break;
             		
@@ -176,6 +196,16 @@ public class Aplicacao {
             		
             		break;
             		
+            	case "buscarUsuario":
+            		try {
+	            		System.out.println("Resultados de usuários para " + cmd[1] + ":");
+	            		System.out.println(visao.showUsuariosSearch(cmd[1]));
+            		} catch (Exception ex) {
+            			System.out.println("\nFAIL: Parâmetro inválido!");
+            		}
+            		
+            		break;
+            		
             	case "listarCategorias":
             		System.out.println("Categorias:");
             		System.out.println(visao.showCategoriasAll());
@@ -209,6 +239,16 @@ public class Aplicacao {
             		
             		break;
             		
+            	case "buscarCategoria":
+            		try {
+	            		System.out.println("Resultados de categorias para " + cmd[1] + ":");
+	            		System.out.println(visao.showCategoriasSearch(cmd[1]));
+		            } catch (Exception ex) {
+		    			System.out.println("\nFAIL: Parâmetro inválido!");
+		    		}
+            		
+            		break;
+            		
             	case "listarProdutos":
             		System.out.println("Produtos:");
             		System.out.println(visao.showProdutosAll());
@@ -239,6 +279,16 @@ public class Aplicacao {
             		} catch (Exception ex) {
             			System.out.println("\nFAIL: Parâmetro inválido!");
             		}
+            		
+            		break;
+            		
+            	case "buscarProduto":
+            		try {
+	            		System.out.println("Resultados de produtos para " + cmd[1] + ":");
+	            		System.out.println(visao.showProdutosSearch(cmd[1]));
+		            } catch (Exception ex) {
+		    			System.out.println("\nFAIL: Parâmetro inválido!");
+		    		}
             		
             		break;
             		
@@ -317,14 +367,17 @@ public class Aplicacao {
         					+ "$addAdmin _nome_ _email_ _senha_: Adiciona um novo Administrador \n"
         					+ "$editarUsuario _email_: Edita o usuário selecionado \n"
         					+ "$deletarUsuario _email_: Deleta o usuário selecionado \n"
+        					+ "$buscarUsuario _valor_: Busca os usuários com o nome ou e-mail do valor inserido \n"
         					+ "$listarCategorias: Lista todas as categorias \n"
         					+ "$addCategoria _nome_: Adiciona uma nova categoria \n"
         					+ "$editarCategoria _nome_: Edita a categoria selecionada \n"
         					+ "$deletarCategoria _nome_: Deleta a categoria selecionada \n"
+        					+ "$buscarCategoria _nome_: Busca as categorias com o nome inserido \n"
         					+ "$listarProdutos: Lista todos os produtos \n"
         					+ "$addProduto _nome_ _categoria_ _preco_: Adiciona um novo produto \n"
         					+ "$editarProduto _nome_: Edita o produto selecionado \n"
         					+ "$deletarProduto _nome_: Deleta o produto selecionado \n"	        					
+        					+ "$buscarProduto _nome_: Busca os produtos com o nome inserido \n"
 							+ "$listarPedidos: Lista todos os pedidos \n"
 							+ "$listarPedidos _email_: Lista todos os pedidos do cliente selecionado \n"
 							+ "$statusPedido _numeroPedido_ _idStatus_: Altera o status do pedido selecionado (1: Aguardando Confirmação, 2: Em envio, 3: Entregue) \n"
@@ -339,7 +392,9 @@ public class Aplicacao {
         					+ "$addSaldo _valor_: Adiciona saldo na sua conta\n"
         					+ "$produtos: Lista todos os produtos \n"
         					+ "$produtos _categoria_: Lista todos os produtos na categoria desejada\n"
+        					+ "$buscarProduto _nome_: Busca os produtos com o nome inserido \n"
         					+ "$categorias: Lista todas as Categorias \n"
+        					+ "$buscarCategoria _nome_: Busca as categorias com o nome inserido \n"
         					+ "$carrinho: Lista todos os itens do seu Carrinho\n"
         					+ "$addCarrinho _produto_ _quantidade_: Adiciona o produto selecionado no Carrinho\n"
         					+ "$removerCarrinho _produto_: Remove o produto selecionado do Carrinho\n"

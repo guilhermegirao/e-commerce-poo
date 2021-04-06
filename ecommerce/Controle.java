@@ -1,13 +1,11 @@
 package ecommerce;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import storage.Categorias;
 import storage.Pedidos;
 import storage.Usuarios;
 import storage.Produtos;
-import storage.Session;
 import storage.Status;
 
 public class Controle {

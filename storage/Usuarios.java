@@ -42,6 +42,20 @@ public class Usuarios {
 		return pos;
 	}
 	
+	public static ArrayList<Usuario> search(String pattern) {
+		ArrayList<Usuario> user = new ArrayList<Usuario>();
+		
+		for (Usuario c : usuarios) {
+			if (c != null) {
+				if (c.getNome().toLowerCase().contains(pattern.toLowerCase()) || c.getEmail().toLowerCase().contains(pattern.toLowerCase())) {
+					user.add(c);
+				}
+			}
+		}
+		
+		return user;
+	}
+	
 	public static Usuario getByEmail(String email) {
 		int id = getId(email);
 		

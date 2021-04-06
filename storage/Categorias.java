@@ -15,7 +15,6 @@ public class Categorias {
 	public static int getId(String nome) {
 		int pos = -1;
 		int i = 0;
-		
 
 		for (Categoria c : categorias) {
 			if (c != null) {
@@ -29,6 +28,20 @@ public class Categorias {
 		}
 		
 		return pos;
+	}
+	
+	public static ArrayList<Categoria> search(String pattern) {
+		ArrayList<Categoria> cat = new ArrayList<Categoria>();
+		
+		for (Categoria c : categorias) {
+			if (c != null) {
+				if (c.getNome().toLowerCase().contains(pattern.toLowerCase())) {
+					cat.add(c);
+				}
+			}
+		}
+		
+		return cat;
 	}
 
 	public static Categoria getByNome(String nome) {

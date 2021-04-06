@@ -10,11 +10,12 @@ public class PedidosComparator implements Comparator<Pedido> {
 		int number1 = o1.getNumber();
 		int number2 = o2.getNumber();
 		
-		if (number1 == number2)
+		if (number1 == number2) {
             return 0;
-        else if (number1 > number2)
+		} else if (number1 > number2) {
             return 1;
-        else
+        } else {
             return -1;
+        }
 	}
 }

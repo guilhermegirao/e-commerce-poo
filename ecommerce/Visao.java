@@ -1,5 +1,6 @@
 package ecommerce;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -14,6 +15,8 @@ import utils.CategoriaComparator;
 import utils.PedidosComparator;
 
 public class Visao {
+	
+	//Mostra o saldo do cliente selecionado
 	public String showSaldoByCliente(Cliente cliente) {
 		String ret = "\nEsse cliente não existe!";
 		
@@ -26,6 +29,7 @@ public class Visao {
 		return ret;
 	}
 	
+	//Mostra todas as categorias
 	public String showCategoriasAll() {
 		Collections.sort(Categorias.getCategorias(), Comparator.nullsFirst(new CategoriaComparator()));
 		
@@ -39,6 +43,23 @@ public class Visao {
 		return ret.equals("")? "\nNão há categorias cadastradas" : ret;
 	}
 	
+	//Mostra as categorias com base na busca
+	public String showCategoriasSearch(String pattern) {
+		ArrayList<Categoria> search = Categorias.search(pattern);
+		
+		Collections.sort(search, Comparator.nullsFirst(new CategoriaComparator()));
+		
+		String ret = "";
+		
+		for (Categoria c : search) {
+			if (c != null)
+				ret += c.getNome() + "\n";
+		}
+		
+		return ret.equals("")? "\nNão há categorias correspondentes a pesquisa" : ret;
+	}
+	
+	//Mostra todos os usuários
 	public String showUsuariosAll() {
 		Collections.sort(Usuarios.getUsuarios(), Comparator.nullsFirst(new UsuarioComparator()));
 		
@@ -54,9 +75,31 @@ public class Visao {
 			}
 		}
 		
-		return ret.equals("")? "\nNão há usuários cadastradas" : ret;
+		return ret.equals("")? "\nNão há usuários cadastrados" : ret;
 	}
 	
+	//Mostra os usuários com base na busca
+	public String showUsuariosSearch(String pattern) {
+		ArrayList<Usuario> search = Usuarios.search(pattern);
+		
+		Collections.sort(search, Comparator.nullsFirst(new UsuarioComparator()));
+		
+		String ret = "";
+		
+		for (Usuario u : search) {
+			if (u != null) {
+				if (u instanceof Cliente) {
+					ret += "\nNome: " + u.getNome() + "\nE-mail: " + u.getEmail() + "\nEndereço: " + ((Cliente) u).getEndereco()  + "\nSaldo: " + ((Cliente) u).getSaldo() + "\nPermissão: Cliente\n";
+				} else {					
+					ret += "\nNome: " + u.getNome() + "\nE-mail: " + u.getEmail() + "\nPermissão: Administrador\n";
+				}
+			}
+		}
+		
+		return ret.equals("")? "\nNão há usuários correspondentes a pesquisa" : ret;
+	}
+	
+	//Motra todos os produtos
 	public String showProdutosAll() {
 		Collections.sort(Produtos.getProdutos(), Comparator.nullsFirst(new ProdutoComparator()));
 		
@@ -76,6 +119,7 @@ public class Visao {
 		return ret.equals("")? "\nNão há produtos cadastrados" : ret;
 	}
 	
+	//Mostra os produtos com base na categoria
 	public String showProdutosByCategoria(String categoriaNome) {
 		int categoriaId = Categorias.getId(categoriaNome);
 		
@@ -97,6 +141,29 @@ public class Visao {
 		}
 	}
 	
+	//Mostra os produtos com base na busca
+	public String showProdutosSearch(String pattern) {
+		ArrayList<Produto> search = Produtos.search(pattern);
+		
+		Collections.sort(search, Comparator.nullsFirst(new ProdutoComparator()));
+		
+		String ret = "";
+		
+		for (Produto p : search) {
+			if (p != null) {
+				Categoria categoria = Categorias.getById(p.getIdCategoria());
+				String cat = "Sem categoria";
+				
+				if (categoria != null) cat = categoria.getNome();
+				
+				ret += "Nome: " + p.getNome() + "\nPreço Unt.: R$ " + p.getValor() + "\nCategoria: " + cat +  "\n";
+			}
+		}
+		
+		return ret.equals("")? "\nNão há produtos correspondentes a pesquisa" : ret;
+	}
+	
+	//Mostra o carrinho do cliente selecionado
 	public String showCarrinhoByCliente(Cliente cliente) {
 		String ret = "";
 		
@@ -119,6 +186,7 @@ public class Visao {
 		return ret.equals("")? "\nNão há produtos no carrinho" : ret + "\n\n============================\nSubtotal: R$" + cliente.getCarrinho().getSubtotal() + "\n";
 	}
 	
+	//Mostra os pedidos do cliente selecionado
 	public String showPedidosByCliente(String email) {
 		Collections.sort(Pedidos.getPedidos(), Collections.reverseOrder(new PedidosComparator()));
 
@@ -150,6 +218,7 @@ public class Visao {
 		return ret.equals("")? "\nNão há pedidos realizados" : ret;
 	}
 	
+	//Mostra todos os pedidos
 	public String showPedidosAll() {
 		Collections.sort(Pedidos.getPedidos(), Collections.reverseOrder(new PedidosComparator()));
 		
