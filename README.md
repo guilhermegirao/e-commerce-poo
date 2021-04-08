@@ -10,7 +10,7 @@ O projeto em questão consiste em utilizar os conteúdos aprendidos na disciplin
 - [Guilherme Girão](https://github.com/guilhermegirao)
 - [Eliton Lima](https://github.com/Eliton-jpg)
 
-## Versão: 1.00
+## Versão: 1.10
 
 ## Agradecimentos:
 * A professora/orientadoa: Lívia Almada;
