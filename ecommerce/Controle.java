@@ -427,6 +427,7 @@ public class Controle {
 			if (cliente.getCarrinho().getSize() > 0) {
 					if (cliente.getCarrinho().getSubtotal() <= cliente.getSaldo()) {
 						Pedidos.addPedidos(cliente);
+						cliente.setSaldo(cliente.getSaldo() - cliente.getCarrinho().getSubtotal());
 						
 						cliente.setCarrinho(new Carrinho());
 						
